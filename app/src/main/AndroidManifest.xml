@@ -1,0 +1,37 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.securefit">
+
+    <application
+        android:label="SecureFit"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/Theme.SecureFit">
+
+        <!-- Launcher Activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- User Flow Activities -->
+        <activity android:name=".SignupActivity" android:exported="true" />
+        <activity android:name=".HomeActivity" android:exported="true" />
+        <activity android:name=".ProfileSetupActivity" android:exported="true" />
+        <activity android:name=".CurrentWeightActivity" android:exported="true" />
+        <activity android:name=".GoalWeightActivity" android:exported="true" />
+        <activity android:name=".CaloriesGoalActivity" android:exported="true" />
+        <activity android:name=".DietPlanActivity" android:exported="true" />
+        <activity android:name=".FinalSetupActivity" android:exported="true" />
+
+        <!-- Bottom Navigation Activities -->
+        <activity android:name=".CalorieActivity" android:exported="true" />
+        <activity android:name=".WorkoutsActivity" android:exported="true" />
+        <activity android:name=".ProfileActivity" android:exported="true" />
+        <activity android:name=".LogFoodActivity" android:exported="true" />
+
+    </application>
+
+</manifest>

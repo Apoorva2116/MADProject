@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/homeicon"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/food"
+        android:title="LogFood" />
+
+    <item
+        android:id="@+id/diets"
+        android:icon="@drawable/clock"
+        android:title="Calories" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/user"
+        android:title="Profile" />
+
+    <item
+        android:id="@+id/workouts"
+        android:icon="@drawable/play"
+        android:title="Workouts" />
+
+</menu>

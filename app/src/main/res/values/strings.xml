@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">SecureFit</string>
+    <string name="hi_apoorva">Hi, Apoorva!</string>
+    <string name="start_your_journey">Let\'s start your journey by getting to know you and setting your fitness goals!</string>
+    <string name="start">Start</string>
+    <string name="current_weight">Current Weight</string>
+    <string name="goal_weight">Goal Weight</string>
+    <string name="next">Next ></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="full_name">Full Name</string>
+    <string name="age">Age</string>
+    <string name="save_profile">Save Profile</string>
+
+    <!-- New user profile setup -->
+    <string name="profile_setup_title">Set up your profile</string>
+    <string name="profile_setup_description">Please enter your details to help us customize your fitness plan.</string>
+    <string name="weight_goal">What is your weight goal?</string>
+
+    <!-- Congratulations after profile setup -->
+    <string name="congrats_message">Congratulations! Your profile is set up. Let\'s start your fitness journey!</string>
+
+    <!-- Buttons and navigation -->
+    <string name="next_button">Next</string>
+    <string name="finish_button">Finish</string>
+
+    <!-- Home page text -->
+    <string name="welcome_back">Welcome back, %1$s!</string>
+    <string name="current_progress">Your current progress:</string>
+    <string name="calories_burned">Calories burned today: %1$d</string>
+    <string name="workout_completed">Workouts completed: %1$d</string>
+
+    <!-- Profile Page -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="view_progress">View Progress</string>
+
+    <!-- Reset Goals -->
+    <string name="reset_goals">Reset Goals</string>
+    <string name="goal_reset_confirmation">Are you sure you want to reset your goals?</string>
+    <string name="goal_reset_success">Your goals have been reset successfully!</string>
+
+    <!-- Other general messages -->
+    <string name="loading">Loading...</string>
+    <string name="error_message">Something went wrong. Please try again.</string>
+
+    <!-- Diet Plan Section -->
+    <string name="calories_goal">Calories Goal</string>
+    <string name="select_diet_plan">Select Diet Plan</string>
+    <string name="low_carb">Low Carb</string>
+    <string name="high_protein">High Protein</string>
+    <string name="balanced">Balanced</string>
+
+    <!-- Confirmation and navigation -->
+    <string name="all_set">All Set!</string>
+    <string name="go_to_home">Go to Home</string>
+</resources>
