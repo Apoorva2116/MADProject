@@ -63,6 +63,16 @@ public class MealItemAdapter extends RecyclerView.Adapter<MealItemAdapter.MealIt
         notifyDataSetChanged();
     }
 
+    public List<MealItem> getSelectedItems() {
+        List<MealItem> selected = new ArrayList<>();
+        for (MealItem item : originalList) {
+            if (item.isSelected) {
+                selected.add(item);
+            }
+        }
+        return selected;
+    }
+
     @NonNull
     @Override
     public MealItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -74,15 +84,23 @@ public class MealItemAdapter extends RecyclerView.Adapter<MealItemAdapter.MealIt
     @Override
     public void onBindViewHolder(@NonNull MealItemViewHolder holder, int position) {
         MealItem item = filteredList.get(position);
+
         holder.foodName.setText(item.name + " (" + item.calories + " cal)");
+
+        holder.checkBox.setOnCheckedChangeListener(null);
         holder.checkBox.setChecked(item.isSelected);
 
-        holder.checkBox.setOnClickListener(v -> {
-            Context context = v.getContext();
-            Intent intent = new Intent(context, FoodQuantityActivity.class);
-            intent.putExtra("FOOD_NAME", item.name);
-            intent.putExtra("CALORIES_PER_UNIT", item.calories);
-            ((MealItemsActivity) context).startActivityForResult(intent, 101);
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            item.isSelected = isChecked;
+            if (isChecked) {
+                Context context = buttonView.getContext();
+                Intent intent = new Intent(context, FoodQuantityActivity.class);
+                intent.putExtra("FOOD_NAME", item.name);
+                intent.putExtra("CALORIES_PER_UNIT", item.calories);
+                ((MealItemsActivity) context).startActivityForResult(intent, 101);
+            } else {
+                item.totalCalories = 0;
+            }
         });
     }
 

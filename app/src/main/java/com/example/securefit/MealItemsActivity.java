@@ -1,13 +1,11 @@
 package com.example.securefit;
 
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,10 +14,8 @@ import java.util.List;
 
 public class MealItemsActivity extends AppCompatActivity {
 
-    private TextView titleText;
-    private RecyclerView recyclerView;
     private MealItemAdapter adapter;
-    private List<MealItem> itemList;
+    private SharedPrefManager prefManager;
     private String mealType;
 
     @Override
@@ -27,21 +23,22 @@ public class MealItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_items);
 
-        titleText = findViewById(R.id.mealTitle);
-        recyclerView = findViewById(R.id.recyclerMealItems);
-        SearchView searchView = findViewById(R.id.searchView);
-        Button btnReset = findViewById(R.id.btnReset);
-        Button btnSave = findViewById(R.id.btnSave);
-
         mealType = getIntent().getStringExtra("MEAL_TYPE");
+        prefManager = new SharedPrefManager(this);
+
+        TextView titleText = findViewById(R.id.mealTitle);
         titleText.setText(mealType + " calories");
 
-        itemList = getMealItemsForType(mealType);
-        adapter = new MealItemAdapter(itemList);
+        RecyclerView recyclerView = findViewById(R.id.recyclerMealItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<MealItem> items = getMealItemsForType(mealType);
+        restoreSelections(items);
+
+        adapter = new MealItemAdapter(items);
         recyclerView.setAdapter(adapter);
 
-        // Search filtering
+        SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -56,22 +53,42 @@ public class MealItemsActivity extends AppCompatActivity {
             }
         });
 
-        // Reset button
-        btnReset.setOnClickListener(v -> adapter.resetSelection());
-
-        // Save calories and return
-        btnSave.setOnClickListener(v -> {
-            int total = adapter.calculateTotalCalories();
-            SharedPrefManager manager = new SharedPrefManager(this);
-            manager.setMealCalories(mealType, total);
-            finish();
+        Button btnReset = findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(v -> {
+            adapter.resetSelection();
+            prefManager.setMealCalories(mealType, 0);
+            prefManager.saveMealSelections(mealType, new ArrayList<>());
         });
 
-        // If returning from FoodQuantityActivity
-        if (getIntent().hasExtra("FOOD_NAME") && getIntent().hasExtra("CALORIES")) {
-            String foodName = getIntent().getStringExtra("FOOD_NAME");
-            int totalCalories = getIntent().getIntExtra("CALORIES", 0);
-            adapter.markItemSelected(foodName, totalCalories);  // ✅ You need markItemSelected in MealItemAdapter
+        Button btnSave = findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(v -> {
+            int total = adapter.calculateTotalCalories();
+            prefManager.setMealCalories(mealType, total);
+            prefManager.saveMealSelections(mealType, adapter.getSelectedItems());
+            finish();
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == RESULT_OK && data != null) {
+            String foodName = data.getStringExtra("FOOD_NAME");
+            int totalCalories = data.getIntExtra("CALORIES", 0);
+            adapter.markItemSelected(foodName, totalCalories);
+        }
+    }
+
+    private void restoreSelections(List<MealItem> items) {
+        List<MealItem> saved = prefManager.getMealSelections(mealType);
+        for (MealItem item : items) {
+            for (MealItem savedItem : saved) {
+                if (item.name.equalsIgnoreCase(savedItem.name)) {
+                    item.isSelected = true;
+                    item.totalCalories = savedItem.totalCalories;
+                    break;
+                }
+            }
         }
     }
 

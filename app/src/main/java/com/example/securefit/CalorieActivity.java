@@ -7,16 +7,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CalorieActivity extends AppCompatActivity {
 
-    int totalCalories = 1200;
-    int breakfast = 175;
-    int lunch = 300;
-    int snacks = 175;
-    int dinner = 151;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diets); // already exists
+        setContentView(R.layout.activity_diets);
+
+        SharedPrefManager prefManager = new SharedPrefManager(this);
+
+        int totalCalories = prefManager.getGoalCalories();
+        int breakfast = prefManager.getMealCalories("BREAKFAST");
+        int lunch = prefManager.getMealCalories("LUNCH");
+        int snacks = prefManager.getMealCalories("SNACKS");
+        int dinner = prefManager.getMealCalories("DINNER");
 
         int eaten = breakfast + lunch + snacks + dinner;
         int remaining = totalCalories - eaten;
@@ -25,6 +27,9 @@ public class CalorieActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvEaten)).setText("Eaten: " + eaten);
         ((TextView) findViewById(R.id.tvRemaining)).setText("Remaining: " + remaining);
 
-        // To add charts, you can integrate MPAndroidChart next
+        ((TextView) findViewById(R.id.tvBreakfast)).setText("BREAKFAST: " + breakfast + " / 255 Cal");
+        ((TextView) findViewById(R.id.tvLunch)).setText("LUNCH: " + lunch + " / 319 Cal");
+        ((TextView) findViewById(R.id.tvSnacks)).setText("SNACKS: " + snacks + " / 179 Cal");
+        ((TextView) findViewById(R.id.tvDinner)).setText("DINNER: " + dinner + " / 447 Cal");
     }
 }

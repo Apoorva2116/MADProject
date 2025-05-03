@@ -7,5 +7,6 @@
     <color name="nav_unselected">#808080</color>
     <color name="grayLight">#EEEEEE</color>   <!-- Light gray background for inactive tabs -->
     <color name="grayDark">#666666</color>   <!-- Dark gray for inactive tab text -->
+    <color name="light_purple">#D6C8F5</color>
 
 </resources>
