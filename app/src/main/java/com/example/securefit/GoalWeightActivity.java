@@ -3,6 +3,7 @@ package com.example.securefit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.NumberPicker;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GoalWeightActivity extends AppCompatActivity {
@@ -12,12 +13,12 @@ public class GoalWeightActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goal_weight);
 
         NumberPicker picker = findViewById(R.id.goalWeightPicker);
-        picker.setMinValue(48);
-        picker.setMaxValue(52);
-        picker.setValue(50);
+        picker.setMinValue(35);
+        picker.setMaxValue(55);
+        picker.setValue(150);
 
-        findViewById(R.id.btnNext).setOnClickListener(view ->
-                startActivity(new Intent(GoalWeightActivity.this, CaloriesGoalActivity.class))
-        );
+        findViewById(R.id.btnNext).setOnClickListener(view -> {
+            startActivity(new Intent(this, CaloriesGoalActivity.class));
+        });
     }
 }

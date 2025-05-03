@@ -32,6 +32,10 @@
         <activity android:name=".ProfileActivity" android:exported="true" />
         <activity android:name=".LogFoodActivity" android:exported="true" />
 
+        <activity android:name=".MealDetailActivity" />
+        <activity android:name=".ChallengesActivity"/>
+
+
     </application>
 
 </manifest>
