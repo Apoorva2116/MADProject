@@ -1,9 +1,13 @@
 package com.example.securefit;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CalorieActivity extends AppCompatActivity {
 
@@ -31,5 +35,38 @@ public class CalorieActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvLunch)).setText("LUNCH: " + lunch + " / 319 Cal");
         ((TextView) findViewById(R.id.tvSnacks)).setText("SNACKS: " + snacks + " / 179 Cal");
         ((TextView) findViewById(R.id.tvDinner)).setText("DINNER: " + dinner + " / 447 Cal");
+
+        ImageView graphIcon = findViewById(R.id.graphIcon);
+        graphIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(CalorieActivity.this, GraphActivity.class);
+            startActivity(intent);
+        });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.diets);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.home) {
+                startActivity(new Intent(this, HomeActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (id == R.id.diets) {
+                return true;
+            } else if (id == R.id.settings) {
+                startActivity(new Intent(this, LogFoodActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (id == R.id.profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            } else if (id == R.id.workouts) {
+                startActivity(new Intent(this, ChallengesActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            }
+            return false;
+        });
     }
 }

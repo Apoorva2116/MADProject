@@ -36,6 +36,8 @@
         <activity android:name=".ChallengesActivity"/>
         <activity android:name=".MealItemsActivity" />
         <activity android:name=".FoodQuantityActivity"/>
+        <activity android:name=".GraphActivity" />
+
 
     </application>
 
