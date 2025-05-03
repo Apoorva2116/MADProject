@@ -34,7 +34,8 @@
 
         <activity android:name=".MealDetailActivity" />
         <activity android:name=".ChallengesActivity"/>
-
+        <activity android:name=".MealItemsActivity" />
+        <activity android:name=".FoodQuantityActivity"/>
 
     </application>
 
