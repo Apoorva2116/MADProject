@@ -42,7 +42,6 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.DietViewHolder
         holder.mealRating.setText("⭐ " + diet.rating);
         holder.imageView.setImageResource(diet.imageResId);
 
-        // Handle card click
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, MealDetailActivity.class);
             intent.putExtra("name", diet.name);

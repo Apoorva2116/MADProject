@@ -33,7 +33,6 @@ public class ChallengesActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Setup bottom navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.workouts);
 
@@ -48,7 +47,7 @@ public class ChallengesActivity extends AppCompatActivity {
             } else if (itemId == R.id.home) {
                 startActivity(new Intent(this, HomeActivity.class));
             } else if (itemId == R.id.workouts) {
-                return true; // Already on this screen
+                return true;
             }
             return true;
         });

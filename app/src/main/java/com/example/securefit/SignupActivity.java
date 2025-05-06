@@ -41,7 +41,7 @@ public class SignupActivity extends AppCompatActivity {
             if (db.signupUser(email, password)) {
                 Toast.makeText(this, "Signup successful!", Toast.LENGTH_SHORT).show();
 
-                sharedPrefManager.setProfileSetupDone(false); // Set profile setup not done yet
+                sharedPrefManager.setProfileSetupDone(false);
 
                 Intent intent = new Intent(this, ProfileSetupActivity.class);
                 intent.putExtra("email", email);

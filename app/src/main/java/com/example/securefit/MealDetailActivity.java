@@ -22,13 +22,11 @@ public class MealDetailActivity extends AppCompatActivity {
         TextView descriptionText = findViewById(R.id.descriptionText);
         Button seeRecipeBtn = findViewById(R.id.seeRecipeButton);
 
-        // Get values from intent
         String name = getIntent().getStringExtra("name");
         int calories = getIntent().getIntExtra("calories", 0);
         float rating = getIntent().getFloatExtra("rating", 0f);
         int imageResId = getIntent().getIntExtra("image", R.drawable.food);
 
-        // Set values
         detailImage.setImageResource(imageResId);
         detailName.setText(name);
         detailCalories.setText(calories + " Calories");
@@ -40,7 +38,6 @@ public class MealDetailActivity extends AppCompatActivity {
                         "It helps with digestion, provides essential vitamins, and fits perfectly in a fitness-based diet plan."
         );
 
-        // Placeholder action
         seeRecipeBtn.setOnClickListener(v -> {
             // future: show full recipe page
         });

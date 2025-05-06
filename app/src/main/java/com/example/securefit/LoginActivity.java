@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             String pass = password.getText().toString().trim();
 
             if (db.loginUser(user, pass)) {
+
                 if (sharedPrefManager.isProfileSetupDone()) {
                     Intent intent = new Intent(this, HomeActivity.class);
                     intent.putExtra("username", user);

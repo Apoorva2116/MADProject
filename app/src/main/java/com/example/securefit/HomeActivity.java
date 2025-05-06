@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
             updateTabStyles(tabLatest, tabMostViewed, tabPersonalized);
         });
 
-        updateTabStyles(tabMostViewed, tabPersonalized, tabLatest); // Set default active tab
+        updateTabStyles(tabMostViewed, tabPersonalized, tabLatest);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -85,7 +85,6 @@ public class HomeActivity extends AppCompatActivity {
             } else if (itemId == R.id.profile) {
                 startActivity(new Intent(this, ProfileActivity.class));
             } else if (itemId == R.id.workouts) {
-                // Updated: open the Challenges & Fun screen
                 startActivity(new Intent(this, ChallengesActivity.class));
             }
             return true;

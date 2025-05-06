@@ -19,38 +19,30 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // Initialize views
         calorieGoalText = findViewById(R.id.calorieGoalText);
         weightGoalText = findViewById(R.id.weightGoalText);
         dietPlanText = findViewById(R.id.dietPlanText);
         editGoalsButton = findViewById(R.id.editGoalsButton);
-        logoutButton = findViewById(R.id.logoutButton); // NEW
+        logoutButton = findViewById(R.id.logoutButton);
 
-        // Load data from SharedPreferences
         SharedPrefManager prefManager = new SharedPrefManager(this);
         int calories = prefManager.getGoalCalories();
         String weight = prefManager.getGoalWeight();
         String dietPlan = prefManager.getDietPlan();
 
-        // Set values
         calorieGoalText.setText(calories + " kcal");
         weightGoalText.setText(weight);
         dietPlanText.setText(dietPlan);
 
-        // Handle "Edit Goals"
         editGoalsButton.setOnClickListener(v -> {
             startActivity(new Intent(this, ProfileSetupActivity.class));
         });
 
-        // Handle "Logout"
         logoutButton.setOnClickListener(v -> {
-            // Optional: clear user session if needed
-            // prefManager.setProfileSetupDone(false);
             startActivity(new Intent(this, LoginActivity.class));
-            finish(); // Optional: prevent returning to profile with back button
+            finish();
         });
 
-        // Setup Bottom Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.profile);
 
